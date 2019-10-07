@@ -29,5 +29,23 @@ export const actions = {
             //remove 1 trucker from inventory
             commit('truckers/decrementTruckerInventory', {id: trucker.id}, {root: true})
         }
+    },
+
+    deleteTruckerFromBookedList ({ state, commit}, trucker) {
+        commit('setFinishBookingStatus', null)
+            const bookedTrucker = state.items.find(item => item.id === trucker.id)
+            if(bookedTrucker.quantity > 1)
+            {
+            commit('decrementTruckerQuantity', bookedTrucker)
+            //remove 1 trucker from inventory
+            commit('truckers/incrementTruckerInventory', {id: bookedTrucker.id}, {root: true})
+            }
+            else 
+            {
+                //remove 1 trucker from inventory
+                commit('truckers/incrementTruckerInventory', {id: bookedTrucker.id}, {root: true})
+                state.items.splice(bookedTrucker.id,1)
+            }
+
     }
 }

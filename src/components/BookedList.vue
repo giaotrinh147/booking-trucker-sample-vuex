@@ -8,6 +8,12 @@
                 :key="trucker.id"
             >
                 {{trucker.title}} - Price: {{trucker.price}}  x {{trucker.quantity}} Trucker
+                <b-button 
+                    variant="outline-primary"
+                    @click="deleteTruckerFromBookedList(trucker)"
+                >
+                Delete
+                </b-button>
             </b-list-group-item>
         </b-list-group>
         <p>Total: {{total}}</p>
@@ -27,11 +33,14 @@ export default {
             bookedTruckers: 'bookedTruckers',
             total: 'bookedTotalPrice'
         })
-    }, 
+    },
     methods: {
         finishBooking (bookedTruckers) {
             this.$store.dispatch('bookedList/FinishBooking', bookedTruckers)
-        }
+        },
+        deleteTruckerFromBookedList (trucker) {
+            this.$store.dispatch('bookedList/deleteTruckerFromBookedList', trucker)
+        },
     }
 }
 </script>

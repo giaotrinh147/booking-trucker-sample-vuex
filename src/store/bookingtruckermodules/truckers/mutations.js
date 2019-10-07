@@ -6,5 +6,10 @@ export const mutations = {
     decrementTruckerInventory (state, { id }) {
         const trucker =state.all.find(trucker => trucker.id === id)
         trucker.inventory--
+    },
+
+    incrementTruckerInventory (state, { id }) {
+        const trucker =state.all.find(trucker => trucker.id === id)
+        trucker.inventory++
     }
 }

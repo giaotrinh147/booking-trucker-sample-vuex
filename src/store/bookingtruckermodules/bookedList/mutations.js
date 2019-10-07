@@ -13,6 +13,11 @@ export const mutations = {
         bookedTrucker.quantity++
     },
 
+    decrementTruckerQuantity (state, {id}) {
+        const bookedTrucker = state.items.find(trucker => trucker.id === id)
+        bookedTrucker.quantity--
+    },
+
     setBookedTruckers (state, { items }) {
         state.items = items
     },
