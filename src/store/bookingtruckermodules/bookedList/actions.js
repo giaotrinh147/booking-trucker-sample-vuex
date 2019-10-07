@@ -42,9 +42,10 @@ export const actions = {
             }
             else 
             {
+                const index = state.items.findIndex(trucker => trucker.id == bookedTrucker.id)
                 //remove 1 trucker from inventory
                 commit('truckers/incrementTruckerInventory', {id: bookedTrucker.id}, {root: true})
-                state.items.splice(bookedTrucker.id,1)
+                state.items.splice(index,1)
             }
 
     }
